@@ -1,40 +1,34 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React from 'react';
+import './App.css'  // Importing the CSS file for styling
+import Header from './Header'  // Importing the Header component
+import VoteCollector from './VoteCollector'  // Importing the VoteCollector component
+import ImageRow from './ImageRow'  // Importing the ImageRow component
+import image1 from './assets/image1.jpg'  // Importing image 1
+import image2 from './assets/image2.jpg'  // Importing image 2
+import image3 from './assets/image3.jpg'  // Importing image 3
 
-const ImageRow = ({ images }) => {
-    return (
-        <div 
-            style={{
-                display: 'flex',              // Aligns child elements (memes) in a row
-                justifyContent: 'space-between', // Spreads memes evenly across the row
-                alignItems: 'center',          // Vertically centers the memes
-                marginBottom: '60px',          // Adds space below the row
-                fontSize: '48px'               // Sets a large font size for labels
-            }}
-        >
-            {/* Map through the images array and render each meme image and its label */}
-            {images.map((image, index) => (
-                <div 
-                    key={index}  // Unique key for each image div (index from map)
-                    style={{ textAlign: 'center' }} // Centers the content (label, image)
-                >
-                    {/* Label for each meme with a dynamic index */}
-                    <label htmlFor={`checkbox${index + 1}`}>
-                        Meme {index + 1}      {/* Displays "Meme 1", "Meme 2", etc. */}
-                    </label>
-                    <br />
-                    {/* Render the image, using the src from the images array */}
-                    <img 
-                        src={image.src}      // The source URL for the image
-                        alt={`Meme ${index + 1}`}  // Alt text for accessibility
-                        style={{ 
-                            width: '300px',  // Sets the image width to 300px
-                            height: 'auto',  // Adjusts height to maintain aspect ratio
-                            objectFit: 'cover' // Ensures the image fills the container properly
-                        }} 
-                    />
-                    <br />
-                </div>
-            ))}
-        </div>
+function App() {
+  // Array of images with source and alt text to pass to ImageRow
+  const images = [
+    { src: image1, alt: 'Image 1' },  // Image object for the first image
+    { src: image2, alt: 'Image 2' },  // Image object for the second image
+    { src: image3, alt: 'Image 3' }   // Image object for the third image
+  ];
+
+  // JSX to render the application
+  return (
+    <>
+      <h1>React VITE Example Meme Voter</h1>  {/* Main heading for the app */}
+      
+      {/* Rendering the Header component */}
+      <Header />
+      
+      {/* Rendering the ImageRow component and passing the images array as a prop */}
+      <ImageRow images={images} />
+      
+      {/* Rendering the VoteCollector component */}
+      <VoteCollector />
+    </>
+  );
+}
+
+export default App;  // Exporting the App component so it can be used elsewhere
